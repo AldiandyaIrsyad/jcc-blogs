@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/Dragonopy/jcc-blogs/authentication"
 	"github.com/Dragonopy/jcc-blogs/controller"
@@ -68,5 +69,5 @@ func main() {
 
 	// Tag are label that can be created by poster
 
-	server.Run(":80")
+	server.Run(":" + os.Getenv("PORT"))
 }
