@@ -69,5 +69,8 @@ func main() {
 
 	// Tag are label that can be created by poster
 
+	if os.Getenv("PORT") == "" {
+		os.Setenv("PORT", "8080")
+	}
 	server.Run(":" + os.Getenv("PORT"))
 }
