@@ -68,5 +68,5 @@ func main() {
 
 	// Tag are label that can be created by poster
 
-	server.Run(":8080")
+	server.Run(":80")
 }

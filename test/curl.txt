@@ -72,3 +72,6 @@ comments
 curl.exe -u reader1:random "localhost:8080/users/5/posts/10/comments" -X POST -d @./comments/post1_comment1.json
 
 DELETE has been tested
+
+test deploy
+curl.exe -u aldiandya:password "https://vast-shelf-81340.herokuapp.com/:80/users" -X GET 
