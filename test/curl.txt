@@ -1,0 +1,74 @@
+TESTING
+
+NOTE:
+aldiandya:password is a given admin
+
+
+**ADD USER**
+
+curl.exe "localhost:8080/users" -X POST -d @./users/reader1.json 
+curl.exe "localhost:8080/users" -X POST -d @./users/reader2.json
+curl.exe "localhost:8080/users" -X POST -d @./users/poster1.json
+curl.exe "localhost:8080/users" -X POST -d @./users/poster2.json
+curl.exe "localhost:8080/users" -X POST -d @./users/poster2_dupe.json
+curl.exe "localhost:8080/users" -X POST -d @./users/admin.json
+
+curl.exe -u aldiandya:password "localhost:8080/users" -X GET 
+
+
+
+**Upgrading Users**
+
+curl.exe -u aldiandya:password "localhost:8080/edituser/4" -X PUT -d @./users/poster_escalation.json
+
+curl.exe -u reader1:random "localhost:8080/edituser/5" -X PUT -d @./users/poster_escalation.json
+
+curl.exe -u aldiandya:salahPassword "localhost:8080/edituser/5" -X PUT -d @./users/poster_escalation.json
+
+
+curl.exe -u aldiandya:password "localhost:8080/edituser/5" -X PUT -d @./users/poster_escalation.json
+
+
+curl.exe -u aldiandya:password "localhost:8080/edituser/6" -X PUT -d @./users/admin.json
+
+
+curl.exe -u aldiandya:password "localhost:8080/users" -X GET 
+
+
+**CATEGORIES**
+
+
+Categories ADD
+curl.exe -u aldiandya:password "localhost:8080/categories" -X POST -d @./categories/concept.json
+curl.exe -u aldiandya:password "localhost:8080/categories" -X POST -d @./categories/implementation.json
+
+add ! on concept 
+curl.exe -u aldiandya:password "localhost:8080/categories" -X PUT -d @./categories/concept_revise.json 
+
+delete concept 
+curl.exe -u aldiandya:password "localhost:8080/categories/1" -X DELETE 
+
+add again
+curl.exe -u aldiandya:password "localhost:8080/categories" -X POST -d @./categories/concept.json
+
+
+// TAGS almost using the same code, so need less check
+TAGS
+curl.exe -u aldiandya:password "localhost:8080/tags" -X POST -d @./tags/binarytree.json
+curl.exe -u aldiandya:password "localhost:8080/tags" -X POST -d @./tags/graph.json
+curl.exe -u aldiandya:password "localhost:8080/tags" -X POST -d @./tags/haskell.json
+curl.exe -u aldiandya:password "localhost:8080/tags" -X POST -d @./tags/linkedlist.json
+curl.exe -u aldiandya:password "localhost:8080/tags" -X POST -d @./tags/python.json
+curl.exe -u aldiandya:password "localhost:8080/tags" -X POST -d @./tags/R.json
+
+POST 
+curl.exe -u reader1:random "localhost:8080/users/2/posts" -X POST -d @./posts/post1.json
+curl.exe -u poster1:gantilagi "localhost:8080/users/4/posts" -X POST -d @./posts/post1.json
+
+curl.exe -u poster2:gantilagi "localhost:8080/users/5/posts" 
+-X POST -d @./posts/post2.json
+
+comments
+curl.exe -u reader1:random "localhost:8080/users/5/posts/10/comments" -X POST -d @./comments/post1_comment1.json
+
+DELETE has been tested
