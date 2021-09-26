@@ -74,4 +74,4 @@ curl.exe -u reader1:random "localhost:8080/users/5/posts/10/comments" -X POST -d
 DELETE has been tested
 
 test deploy
-curl.exe -u aldiandya:password "https://vast-shelf-81340.herokuapp.com/:80/users" -X GET 
+curl.exe -u aldiandya:password "https://vast-shelf-81340.herokuapp.com/users" -X GET 
